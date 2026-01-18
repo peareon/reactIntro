@@ -7,6 +7,10 @@ class Song extends Component{
         super(props);
     }
 
+    componentDidMount(){
+        console.log("I am mounted!")
+    }
+
     render(){
         return(
             <div>
