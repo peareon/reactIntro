@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Song from './components/Song'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className='songContainer'>
+        <Song 
+          title = "Estacionario" 
+          artist = "Tino el pingüino"
+          duration = "3:42"
+
+        />
+        <Song 
+          title = "Como la flor" 
+          artist = "Selena"
+          duration = "4:04"
+
+        />
+        <Song 
+          title = "Tiene espinas el rosal" 
+          artist = "Grupo cañaberal"
+          duration = "3:55"
+
+        />
+      </div>
     </div>
   );
 }
