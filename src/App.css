@@ -5,13 +5,27 @@
   height: 100vh;
 }
 
-.songContainer{
+.mainContainer{
   margin-top: 40px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   width: 100%;
   justify-content: space-evenly;
   align-content: center;
+}
+
+.searchResults, .library{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25px 0px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.song{
+  flex: 1 0 calc(25% - 15px);
+  box-sizing: border-box;
 }
 
 .App-header {
