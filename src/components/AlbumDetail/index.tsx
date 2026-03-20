@@ -1,30 +1,36 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchDetail from "../../hooks/useFetchDetail";
+import { AlbumDetailContainer, AlbumDetailGap, AlbumDetailImage, AlbumDetailInfoContainer, AlbumInfoGap } from "./styles";
 
 function AlbumDetail(){
     const {id} = useParams();
     const {album, isLoading, error} = useFetchDetail(id);
     console.log("album detail: ",album)
     return(
-        <div>
+        <AlbumDetailContainer>
             {album?
-                <div>
+                <AlbumDetailGap>
                     <div>
-                        <img src={album.strAlbumThumb} alt="" />
+                        <AlbumDetailImage src={album.strAlbumThumb} alt="" />
                     </div>
-                    <div>
-                    <div>Artista: {album.strArtist}</div>
-                        <div>Álbum: {album.strAlbumStripped}</div>
-                        <div>Género: {album.strGenre}</div>
-                        <div>Ventas: {album.intSales}</div>
-                    </div>
-                </div>
+                    <AlbumDetailInfoContainer>
+                        <div>
+                            <AlbumInfoGap>Artista: {album.strArtist}</AlbumInfoGap>
+                            <div>Álbum: {album.strAlbumStripped}</div>
+                        </div>
+                        <div>
+                            <AlbumInfoGap>Género: {album.strGenre}</AlbumInfoGap>
+                            <div>Ventas: {album.intSales}</div>
+                        </div>
+                        
+                    </AlbumDetailInfoContainer>
+                </AlbumDetailGap>
                 :
             isLoading? <p>Cargando información del álbum...</p>:
             error? <p>Ocurrió un error al recuperar la información. Intenta de nuevo {error}</p>:
             <div>No hay álbum disponible</div>}
-        </div>
+        </AlbumDetailContainer>
     );
 }
 

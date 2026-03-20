@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { HeaderButton, HeaderContainer, HeaderForm, HeaderInput, HeaderTitle, HeaderWrapper } from "./styles";
 
 type FormState = {
     album: string;
@@ -27,17 +28,17 @@ function Header({setTrigger}:any){
 
 
     return(
-        <div>
-            <div>
+        <HeaderContainer>
+            <HeaderWrapper>
                 <Link to={'/'}>
-                    <h1>Lexur</h1>
+                    <HeaderTitle>Lexur</HeaderTitle>
                 </Link>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <input type="text" name="album" value={form.album} onChange={(e) => handleAlbumChange(e)}></input>
-                    <button type="submit" >Search</button>
-                </form>
-            </div>
-        </div>
+                <HeaderForm onSubmit={(e) => handleSubmit(e)}>
+                    <HeaderInput type="text" name="album" value={form.album} onChange={(e) => handleAlbumChange(e)}></HeaderInput>
+                    <HeaderButton type="submit" >Search</HeaderButton>
+                </HeaderForm>
+            </HeaderWrapper>
+        </HeaderContainer>
     )
 }
 

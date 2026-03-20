@@ -7,6 +7,9 @@ import { Routes, Route } from 'react-router-dom';
 import { AlbumList } from './types/types';
 import useFetchAlbums from "./hooks/useFetchAlbums";
 import AlbumDetail from "./components/AlbumDetail";
+import { ThemeProvider } from "styled-components";
+import Theme from "./theme";
+import GlobalStyle from "./theme/GlobalStyles";
 
 
 function App() {
@@ -14,14 +17,11 @@ function App() {
   const [library, setLibrary] = useState<AlbumList>([]);
   const [trigger, setTrigger] = useState<string>("");
   const {albums, isLoading, error} = useFetchAlbums(trigger);
-  
-    // useEffect(()=>{
-    //   console.log("Me actualicé");
-    //   console.log(library)
-    // }, [library, albums])
 
   return (
-    <div className="App">
+    <ThemeProvider theme={Theme}>
+      <GlobalStyle/>
+      <div className="App">
       <Header 
         setTrigger = {setTrigger}
 
@@ -30,24 +30,20 @@ function App() {
         <Route  path='/' element={
           <div>
             {albums?
-              <div className='mainContainer'>
-                <h3>Search results</h3>
-                <div className='searchResults'>
+              <div className="mainContainer">
+                <>
                 
                   <SearchResults
                     albumList={albums}
                     library={library}
                     updateLibrary={setLibrary}
                   />
-                </div>
-                <h3>
-                  Biblioteca
-                </h3>
-                <div className='library'>
+                </>
+                <>
                   <Library
                     library={library}
                   />
-                </div>
+                </>
               </div>: isLoading? <div>Cargando...</div>: error? <div>Error al recuperar la información {error}</div>: <div>Realiza una búsqueda</div>
             }
           </div>
@@ -62,6 +58,7 @@ function App() {
       </Routes>
       
     </div>
+    </ThemeProvider>
   );
 }
 

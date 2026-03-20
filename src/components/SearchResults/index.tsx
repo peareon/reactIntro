@@ -1,6 +1,7 @@
 import React from "react";
 import Album from "../Album";
 import { AlbumInterface } from "../../types/types";
+import { AlbumResponsiveContainer, AlbumsFetchedContainer, SearchResultsContainer, SearchTitleContainer } from "./styles";
 
 
 
@@ -14,28 +15,33 @@ function SearchResults({ albumList, library, updateLibrary}:any){
     console.log(albumList)
 
     return(
-        <>
-            {
-                albumList.map((album:AlbumInterface) =>(
-                    <div className="song" key={album.idAlbum}>
-                        <Album
-                            id = {album.idAlbum}
-                            imageUrl = {album.strAlbum3DThumb}
-                            title = {album.strAlbum}
-                            artist= {album.strArtist}
-                            releaseDate = {album.intYearReleased}
-                            
-                        />
-                        {
-                            library.some((element:AlbumInterface) => element.idAlbum == album.idAlbum)?
-                            <div></div>:
-                            <button onClick={() => addToLibrary(album.idAlbum, album.strAlbum, album.strArtist, album.intYearReleased, album.strAlbum3DThumb)}>Agregar a mi biblioteca</button>
+        <SearchResultsContainer>
+            <SearchTitleContainer>
+                <h3>Search results</h3>
+            </SearchTitleContainer>
+            <AlbumsFetchedContainer>
+                {
+                    albumList.map((album:AlbumInterface) =>(
+                        <AlbumResponsiveContainer key={album.idAlbum}>
+                            <Album
+                                id = {album.idAlbum}
+                                imageUrl = {album.strAlbum3DThumb}
+                                title = {album.strAlbum}
+                                artist= {album.strArtist}
+                                releaseDate = {album.intYearReleased}
+                                
+                            />
+                            {
+                                library.some((element:AlbumInterface) => element.idAlbum == album.idAlbum)?
+                                <div></div>:
+                                <button onClick={() => addToLibrary(album.idAlbum, album.strAlbum, album.strArtist, album.intYearReleased, album.strAlbum3DThumb)}>Agregar a mi biblioteca</button>
 
-                        }
-                    </div>
-                ))
-            }
-        </>
+                            }
+                        </AlbumResponsiveContainer>
+                    ))
+                }
+            </AlbumsFetchedContainer>
+        </SearchResultsContainer>
     )
 }
 
