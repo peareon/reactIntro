@@ -1,0 +1,15 @@
+
+export const addAlbum = (album) =>{
+    console.log("album", typeof album, album)
+    return{
+        type: "ADD_ALBUM",
+        payload: album
+    }
+} 
+
+export const removeAlbum = (id) => {
+    return{
+        type: "REMOVE_ALBUM",
+        payload: id
+    }
+}
