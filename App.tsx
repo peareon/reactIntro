@@ -1,15 +1,15 @@
 import React from "react";
-import { useEffect, useState } from 'react';
-import Header from './components/Header/index';
-import SearchResults from './components/SearchResults/index';
-import Library from './components/Library/index';
+import { useState } from 'react';
+import Header from './src/components/Header/index';
+import SearchResults from './src/components/SearchResults/index';
+import Library from './src/components/Library/index';
 import { Routes, Route } from 'react-router-dom';
-import { AlbumList } from './types/types';
-import useFetchAlbums from "./hooks/useFetchAlbums";
-import AlbumDetail from "./components/AlbumDetail";
+import { AlbumList } from './src/types/types';
+import useFetchAlbums from "./src/hooks/useFetchAlbums";
+import AlbumDetail from "./src/components/AlbumDetail";
 import { ThemeProvider } from "styled-components";
-import Theme from "./theme";
-import GlobalStyle from "./theme/GlobalStyles";
+import Theme from "./src/theme";
+import GlobalStyle from "./src/theme/GlobalStyles";
 
 
 function App() {

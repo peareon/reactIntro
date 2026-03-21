@@ -1,11 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import Theme from ".";
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
     body{
-        font-family: ${props => props.theme.fonts.base};
         padding: 15px;
         box-sizing: border-box;
         overflow: visible;

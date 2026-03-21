@@ -2,11 +2,15 @@ import React from "react";
 import Album from "../Album";
 import { AlbumInterface } from "../../types/types";
 import { AlbumResponsiveContainer, AlbumsFetchedContainer, SearchResultsContainer, SearchTitleContainer } from "./styles";
+import { useDispatch } from "react-redux";
+import { addAlbum } from "../../redux/actions";
 
 
 
 function SearchResults({ albumList, library, updateLibrary}:any){
     
+    const dispatch = useDispatch();
+
     function addToLibrary (id: number, album: string, artist: string, releaseYear: string, imageUrl: string){
         console.log(id, album, artist, releaseYear);
         updateLibrary((prevFields: []) => [...prevFields, {idAlbum: id, strAlbum: album, strArtist: artist, intYearReleased: releaseYear, strAlbum3DThumb: imageUrl, id:id}])
@@ -34,7 +38,7 @@ function SearchResults({ albumList, library, updateLibrary}:any){
                             {
                                 library.some((element:AlbumInterface) => element.idAlbum == album.idAlbum)?
                                 <div></div>:
-                                <button onClick={() => addToLibrary(album.idAlbum, album.strAlbum, album.strArtist, album.intYearReleased, album.strAlbum3DThumb)}>Agregar a mi biblioteca</button>
+                                <button onClick={() => dispatch(addAlbum(album))}>Agregar a mi biblioteca</button>
 
                             }
                         </AlbumResponsiveContainer>

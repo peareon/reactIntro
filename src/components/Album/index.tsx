@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AlbumContainer, AlbumDetails, AlbumImage, AlbumInfo } from "./styles";
 
-function Album({ title, artist, releaseDate, imageUrl, id }: any){
+function Album({ title, artist, releaseDate, imageUrl, id, onRemove }: any){
 
     return(
         <AlbumContainer>
@@ -18,6 +18,7 @@ function Album({ title, artist, releaseDate, imageUrl, id }: any){
                 <AlbumDetails>Título: <span>{title}</span></AlbumDetails>
                 <AlbumDetails>Artista: <span>{artist}</span></AlbumDetails>
                 <AlbumDetails releaseYear={Number(releaseDate)}>Release Date: <span>{releaseDate}</span></AlbumDetails>
+                {onRemove? <button onClick={onRemove}>Eliminar</button>: <></>}
             </AlbumInfo>
         </AlbumContainer>
     )
