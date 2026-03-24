@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const Theme = {
     colors: {
         primary: "#ddd",
@@ -15,5 +17,30 @@ const Theme = {
     }
 }
 
+const IdleParagraph = styled.p`
+    text-align: center;
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+`
 
-export default Theme
+const FailedParagraph = styled.p`
+    text-align: center;
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+`
+
+const LoadingParagraph = styled.p`
+    text-align: center;
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+`
+
+export {
+    Theme,
+    IdleParagraph,
+    FailedParagraph,
+    LoadingParagraph
+}

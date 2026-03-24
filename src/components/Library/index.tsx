@@ -1,14 +1,14 @@
 import React from "react";
 import Album from "../Album";
-import { AlbumInterface, LibraryList } from "../../types/types";
+import { AlbumInterface } from "../../types/types";
 import { LibraryAlbumsContainer, LibraryContainer, LibraryTitleContainer, AlbumResponsiveContainer } from "./syles";
 import { useDispatch, useSelector } from "react-redux";
-import { removeAlbum } from "../../redux/actions";
+import { removeAlbum } from "../../redux/slices/library.slice";
 
 
-function Library({ library }: LibraryList ){
+function Library(){
     
-    const albumList = useSelector((state:any) => state.data.albums)
+    const albumList = useSelector((state:any) => state.library?.albums)
     const dispatch = useDispatch();
     const hanldeRemove = (id:any) => {
         dispatch(removeAlbum(id));
@@ -19,7 +19,7 @@ function Library({ library }: LibraryList ){
             <LibraryTitleContainer>Biblioteca</LibraryTitleContainer>
             <LibraryAlbumsContainer>
                 {
-                    albumList.map((album:AlbumInterface) =>(
+                    albumList?.map((album:AlbumInterface) =>(
                     <AlbumResponsiveContainer key={album.idAlbum}>
                         <Album 
                             id = {album.idAlbum}

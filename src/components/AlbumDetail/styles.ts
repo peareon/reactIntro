@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-interface Album {
-    releaseYear?:number;
-}
 
 const AlbumDetailContainer = styled.div`
     display: flex;

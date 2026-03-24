@@ -1,35 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useFetchDetail from "../../hooks/useFetchDetail";
 import { AlbumDetailContainer, AlbumDetailGap, AlbumDetailImage, AlbumDetailInfoContainer, AlbumInfoGap } from "./styles";
+import { useSelector } from "react-redux";
+import { FAILED, IDLE, LOADING, SUCCEEDED } from "../../redux/slices/status";
+import { useAppDispatch } from "../../hooks/hook";
+import { fetchAlbumDetail } from "../../redux/slices/search.slice";
 
 function AlbumDetail(){
     const {id} = useParams();
-    const {album, isLoading, error} = useFetchDetail(id);
-    console.log("album detail: ",album)
+
+    const detailStatus = useSelector((state:any) => state.searchedSongs?.statusDetail)
+    const albumDetail = useSelector((state:any) => state.searchedSongs?.album)
+    const dispatch = useAppDispatch();
+
+    useEffect(()=>{
+        if(id){
+             dispatch(fetchAlbumDetail(id));
+        }
+    },[dispatch, id])
+
     return(
         <AlbumDetailContainer>
-            {album?
+            {detailStatus === SUCCEEDED?
                 <AlbumDetailGap>
                     <div>
-                        <AlbumDetailImage src={album.strAlbumThumb} alt="" />
+                        <AlbumDetailImage src={albumDetail?.strAlbumThumb} alt="" />
                     </div>
                     <AlbumDetailInfoContainer>
                         <div>
-                            <AlbumInfoGap>Artista: {album.strArtist}</AlbumInfoGap>
-                            <div>Álbum: {album.strAlbumStripped}</div>
+                            <AlbumInfoGap>Artista: {albumDetail?.strArtist}</AlbumInfoGap>
+                            <div>Álbum: {albumDetail?.strAlbumStripped}</div>
                         </div>
                         <div>
-                            <AlbumInfoGap>Género: {album.strGenre}</AlbumInfoGap>
-                            <div>Ventas: {album.intSales}</div>
+                            <AlbumInfoGap>Género: {albumDetail?.strGenre}</AlbumInfoGap>
+                            <div>Ventas: {albumDetail?.intSales}</div>
                         </div>
                         
                     </AlbumDetailInfoContainer>
                 </AlbumDetailGap>
                 :
-            isLoading? <p>Cargando información del álbum...</p>:
-            error? <p>Ocurrió un error al recuperar la información. Intenta de nuevo {error}</p>:
-            <div>No hay álbum disponible</div>}
+            detailStatus === LOADING ? <p>Cargando información del álbum...</p>:
+            detailStatus === FAILED? <p>Ocurrió un error al recuperar la información. Intenta de nuevo</p>: 
+            detailStatus === IDLE? <div>No hay álbum disponible</div>:
+            <></>
+            }
         </AlbumDetailContainer>
     );
 }

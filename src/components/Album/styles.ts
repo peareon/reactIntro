@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Album {
-    releaseYear?:number;
+    releaseyear?:number;
 }
 
 const AlbumContainer = styled.div`
@@ -30,15 +30,15 @@ const AlbumDetails = styled.div<Album>`
     font-weight: 500;
     span{
         color: ${props => {
-            if(!props.releaseYear) return;
-            if(props.releaseYear <= 1950) return '#664c2f'
-            if(props.releaseYear > 1950 && props.releaseYear <= 1960) return '#564237'
-            if(props.releaseYear > 1960 && props.releaseYear <= 1970) return '#4b392f'
-            if(props.releaseYear > 1970 && props.releaseYear <= 1980) return '#342720'
-            if(props.releaseYear > 1980 && props.releaseYear <= 1990) return '#2c211b'
-            if(props.releaseYear > 1990 && props.releaseYear <= 2000) return '#1b1410'
-            if(props.releaseYear > 2000) return '#040303'
-            if(props.releaseYear == 0) return '#ffffff'
+            if(!props.releaseyear) return;
+            if(props.releaseyear <= 1950) return '#664c2f'
+            if(props.releaseyear > 1950 && props.releaseyear <= 1960) return '#564237'
+            if(props.releaseyear > 1960 && props.releaseyear <= 1970) return '#4b392f'
+            if(props.releaseyear > 1970 && props.releaseyear <= 1980) return '#342720'
+            if(props.releaseyear > 1980 && props.releaseyear <= 1990) return '#2c211b'
+            if(props.releaseyear > 1990 && props.releaseyear <= 2000) return '#1b1410'
+            if(props.releaseyear > 2000) return '#040303'
+            if(props.releaseyear === 0) return '#ffffff'
         }};
         font-size: 11px;
     }

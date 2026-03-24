@@ -2,12 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderButton, HeaderContainer, HeaderForm, HeaderInput, HeaderTitle, HeaderWrapper } from "./styles";
+import { fetchAlbums, resetSearch } from "../../redux/slices/search.slice";
+import { useAppDispatch } from "../../hooks/hook";
 
 type FormState = {
     album: string;
 }
 
-function Header({setTrigger}:any){
+function Header(){
+
+    const dispatch = useAppDispatch();
 
     const [form, setForm] = useState<FormState>({
         album: ""
@@ -16,7 +20,8 @@ function Header({setTrigger}:any){
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) =>{
         e.preventDefault();
-        setTrigger(form.album);
+        dispatch(resetSearch([]));
+        dispatch(fetchAlbums(form.album));
     };
 
     const handleAlbumChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
