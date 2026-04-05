@@ -1,4 +1,3 @@
-import React from "react";
 import Header from './components/Header/index';
 import SearchResults from './components/SearchResults/index';
 import Library from './components/Library/index';
