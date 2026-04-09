@@ -42,6 +42,7 @@ const HeaderForm = styled.form`
     flex-direction: column;
     width: 30%;
     margin: auto;
+    padding-top: 30px;
 `
 
 const HeaderWrapper = styled.div`

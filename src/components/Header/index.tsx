@@ -36,11 +36,17 @@ function Header(){
         <HeaderContainer>
             <HeaderWrapper>
                 <Link to={'/'}>
-                    <HeaderTitle>Lexur</HeaderTitle>
+                    <HeaderTitle aria-label="título de la aplicación">Lexur</HeaderTitle>
                 </Link>
                 <HeaderForm onSubmit={(e) => handleSubmit(e)}>
-                    <HeaderInput type="text" name="album" value={form.album} onChange={(e) => handleAlbumChange(e)}></HeaderInput>
-                    <HeaderButton type="submit" >Search</HeaderButton>
+                    <label htmlFor="headerInput">Ingresa un artista</label>
+                    <HeaderInput type="text"
+                        name="album"
+                        value={form.album} onChange={(e) => handleAlbumChange(e)}
+                        id="headerInput"
+                        aria-label="ipnut de búsqueda de artista"
+                      ></HeaderInput>
+                    <HeaderButton type="submit" lang="en" role="button">Search</HeaderButton>
                 </HeaderForm>
             </HeaderWrapper>
         </HeaderContainer>

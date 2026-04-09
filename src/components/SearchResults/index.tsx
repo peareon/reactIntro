@@ -35,7 +35,7 @@ function SearchResults(){
                             {
                                 libraryList?.some((element:AlbumInterface) => element.idAlbum === album.idAlbum)?
                                 <div></div>:
-                                <button onClick={() => dispatcher(addAlbum(album))}>Agregar a mi biblioteca</button>
+                                <button onClick={() => dispatcher(addAlbum(album))} role="button">Agregar a mi biblioteca</button>
 
                             }
                         </AlbumResponsiveContainer>
